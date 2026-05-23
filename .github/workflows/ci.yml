@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache node modules (client)
+        if: exists('client/package.json')
+        uses: actions/cache@v4
+        with:
+          path: client/node_modules
+          key: client-${{ runner.os }}-node-${{ hashFiles('client/package-lock.json') }}
+          restore-keys: |
+            client-${{ runner.os }}-node-
+
+      - name: Cache node modules (server)
+        if: exists('server/package.json')
+        uses: actions/cache@v4
+        with:
+          path: server/node_modules
+          key: server-${{ runner.os }}-node-${{ hashFiles('server/package-lock.json') }}
+          restore-keys: |
+            server-${{ runner.os }}-node-
+
+      - name: Install & build client (if present)
+        run: |
+          if [ -f client/package.json ]; then
+            echo "Found client/package.json — installing and attempting build"
+            cd client
+            npm ci
+            if npm run | grep -q 'build'; then
+              npm run build
+            else
+              echo "No client build script defined, skipping build."
+            fi
+          else
+            echo "No client directory found — skipping client build."
+          fi
+
+      - name: Install & run server lint/test (if present)
+        run: |
+          if [ -f server/package.json ]; then
+            echo "Found server/package.json — installing and attempting lint/test"
+            cd server
+            npm ci
+            if npm run | grep -q 'lint'; then
+              npm run lint
+            elif npm run | grep -q 'test'; then
+              npm test
+            else
+              echo "No server lint or test scripts defined, skipping."
+            fi
+          else
+            echo "No server directory found — skipping server checks."
+          fi
