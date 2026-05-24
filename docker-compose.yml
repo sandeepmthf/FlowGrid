@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./server
+    container_name: flowgrid-backend
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./client
+    container_name: flowgrid-frontend
+    restart: unless-stopped
+    ports:
+      - '3000:80'
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:6.0
+    container_name: flowgrid-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+volumes:
+  mongo-data:

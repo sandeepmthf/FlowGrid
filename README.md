@@ -263,6 +263,36 @@ This project is licensed under the MIT License — see the LICENSE file for deta
 Thank you for using FlowGrid! If you'd like, I can also add a `CONTRIBUTING.md`, CI workflow, or a minimal Docker setup next.
 
 ## SSH setup & switching remote to SSH
+## Deployment (Docker)
+
+This repository includes Dockerfiles for both the frontend and backend and a `docker-compose.yml` to run the full stack locally (includes a MongoDB service).
+
+Prerequisites:
+- Docker & Docker Compose installed
+
+Quick start (from project root):
+
+```bash
+# Ensure server/.env contains your MONGO_URI, JWT_SECRET, and PORT if desired
+cp server/.env.example server/.env  # modify as needed
+docker-compose up --build
+```
+
+Services:
+- frontend: serves the built Vite app behind Nginx on port 3000
+- backend: Node/Express app on port 5000
+- mongodb: MongoDB instance (data stored in a Docker volume)
+
+Notes:
+- The `client/nginx.conf` proxies `/api` requests to the backend (service name `backend`). When deploying to cloud, update the API base URL accordingly.
+- For production, use a managed MongoDB (Atlas) and set `MONGO_URI` in `server/.env` instead of the local mongodb service.
+
+Cleaning up:
+
+```bash
+docker-compose down -v
+```
+
 
 If you'd rather push and authenticate via SSH (recommended for convenience), follow these steps.
 
