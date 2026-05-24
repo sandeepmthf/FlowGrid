@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+# FlowGrid 🚀
+
+FlowGrid is a modern, collaborative project management and agile workflow tracking platform inspired by Jira and GoodDay Work. It offers visual analytics dashboards, flexible project workspaces, and a drag-and-drop Kanban board designed to streamline development and team coordination.
+
+---
+
+## 🏗️ Tech Stack
+
 # FlowGrid 🚀
 
 FlowGrid is a modern, collaborative project management and agile workflow tracking platform inspired by Jira and GoodDay Work. It offers visual analytics dashboards, flexible project workspaces, and a drag-and-drop Kanban board designed to streamline development and team coordination.
@@ -53,7 +62,7 @@ flowgrid/
  │    ├── tailwind.config.js  # Tailwind settings
  │    └── vite.config.js      # Vite compilation configurations
  │
- ├── server/                  # Backend Node + Express Application
++ ├── server/                  # Backend Node + Express Application
  │    ├── config/             # DB configurations (db.js)
  │    ├── controllers/        # Request handlers (auth, projects, tasks)
  │    ├── middleware/         # Security guards (authMiddleware.js)
@@ -207,23 +216,23 @@ Register a user:
 
 ```bash
 curl -X POST http://localhost:5000/api/auth/register \
-	-H "Content-Type: application/json" \
-	-d '{"name":"Alice","email":"alice@example.com","password":"password123"}'
+  -H "Content-Type: application/json" \
+  -d '{"name":"Alice","email":"alice@example.com","password":"password123"}'
 ```
 
 Login and receive token:
 
 ```bash
 curl -X POST http://localhost:5000/api/auth/login \
-	-H "Content-Type: application/json" \
-	-d '{"email":"alice@example.com","password":"password123"}'
+  -H "Content-Type: application/json" \
+  -d '{"email":"alice@example.com","password":"password123"}'
 ```
 
 Get tasks (authorized):
 
 ```bash
 curl http://localhost:5000/api/tasks \
-	-H "Authorization: Bearer <TOKEN>"
+  -H "Authorization: Bearer <TOKEN>"
 ```
 
 ## Troubleshooting
