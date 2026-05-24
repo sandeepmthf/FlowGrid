@@ -24,17 +24,15 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800 flex-shrink-0">
+  <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800 flex-shrink-0 soft-card">
       {/* Brand logo header */}
-      <div className="p-6 flex items-center gap-3 border-b border-slate-800/60">
+  <div className="p-6 flex items-center gap-3 border-b border-slate-800/60">
         <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-black text-lg tracking-wider">
           F
         </div>
         <div>
           <h1 className="text-lg font-bold text-white font-display leading-tight tracking-wide">FlowGrid</h1>
-          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center gap-1">
-            <TrendingUp className="w-3 h-3 text-emerald-500" /> Active Workspace
-          </p>
+          <p className="text-[11px] text-slate-400 font-semibold flex items-center gap-2 mt-0.5">Your workspace — simple, calm, and focused</p>
         </div>
       </div>
 
@@ -48,7 +46,7 @@ const Sidebar = () => {
               const matched = projects.find(p => p._id === e.target.value);
               if (matched) selectProject(matched);
             }}
-            className="w-full bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 text-xs font-semibold px-3 py-2 rounded-xl focus:outline-none transition-all cursor-pointer"
+            className="w-full bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 text-sm font-semibold px-3 py-2 rounded-2xc focus:outline-none transition-all cursor-pointer"
           >
             {projects.map(p => (
               <option key={p._id} value={p._id} className="bg-slate-950 text-slate-200">{p.title}</option>
@@ -81,7 +79,7 @@ const Sidebar = () => {
       </nav>
 
       {/* Logged in User Profile Footer */}
-      <div className="p-4 border-t border-slate-800/80 bg-slate-950/20 flex flex-col gap-3">
+  <div className="p-4 border-t border-slate-800/80 bg-slate-950/20 flex flex-col gap-3">
         {user && (
           <div className="flex items-center gap-3 px-2">
             <img
@@ -98,7 +96,7 @@ const Sidebar = () => {
 
         <button
           onClick={logout}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-800 hover:border-rose-500/30 hover:bg-rose-500/10 hover:text-rose-400 text-xs font-semibold tracking-wider transition-all text-slate-400 cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xc border border-slate-800 hover:border-rose-500/30 hover:bg-rose-500/10 hover:text-rose-400 text-sm font-semibold tracking-wider transition-all text-slate-400 cursor-pointer"
         >
           <LogOut className="w-4 h-4" />
           <span>SIGN OUT</span>

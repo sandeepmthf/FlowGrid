@@ -63,7 +63,7 @@ const KanbanCard = ({ task }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="bg-white rounded-xl shadow-sm border border-slate-100 p-4 hover:shadow-md hover:border-slate-200/80 transition-all flex flex-col gap-3 group relative"
+      className="bg-white rounded-2xc shadow-sm border border-slate-100 p-4 soft-card transition-all flex flex-col gap-3 group relative"
     >
       {/* Top section: priority and drag handle */}
       <div className="flex items-center justify-between">
@@ -105,7 +105,7 @@ const KanbanCard = ({ task }) => {
           {task.title}
         </h4>
         {task.description && (
-          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed">
             {task.description}
           </p>
         )}
@@ -122,11 +122,11 @@ const KanbanCard = ({ task }) => {
             <Calendar className="w-3 h-3" />
             <span>{formatDueDate(task.dueDate)}</span>
             {isOverdue(task.dueDate) && task.status !== 'Done' && (
-              <AlertCircle className="w-2.5 h-2.5 text-rose-500 animate-pulse" />
+              <AlertCircle className="w-2.5 h-2.5 text-rose-500 animate-pulse-slow" />
             )}
           </div>
         ) : (
-          <div className="text-[11px] text-slate-300 italic font-medium">No due date</div>
+          <div className="text-[11px] text-slate-400 italic font-medium">No due date • consider adding one</div>
         )}
 
         {/* Assignee Avatar */}

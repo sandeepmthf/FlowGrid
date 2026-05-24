@@ -38,7 +38,7 @@ const KanbanColumn = ({ id, title, tasks }) => {
   };
 
   return (
-    <div className="flex flex-col flex-1 min-w-[280px] bg-slate-50/50 border border-slate-200/80 rounded-2xl p-4 max-h-[calc(100vh-12rem)] min-h-[500px]">
+  <div className="flex flex-col flex-1 min-w-[280px] bg-slate-50/50 border border-slate-200/80 rounded-2xc p-4 max-h-[calc(100vh-12rem)] min-h-[500px] soft-card">
       {/* Column Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -62,9 +62,9 @@ const KanbanColumn = ({ id, title, tasks }) => {
       </div>
 
       {/* Droppable Card Area */}
-      <div
+        <div
         ref={setNodeRef}
-        className={`flex-1 overflow-y-auto flex flex-col gap-3 rounded-xl border border-dashed p-2 transition-all ${getBorderColor()} ${
+        className={`flex-1 overflow-y-auto flex flex-col gap-3 rounded-2xc border border-dashed p-3 transition-all ${getBorderColor()} ${
           isOver ? 'bg-indigo-50/20' : ''
         }`}
       >

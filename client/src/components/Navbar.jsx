@@ -17,7 +17,7 @@ const Navbar = ({ title }) => {
   };
 
   return (
-    <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0 z-10 shadow-sm">
+  <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0 z-10 soft-card">
       {/* Page Title / Project context breadcrumbs */}
       <div className="flex items-center gap-3">
         <h2 className="text-lg font-bold font-display text-slate-800 tracking-wide">
@@ -41,10 +41,10 @@ const Navbar = ({ title }) => {
           </span>
           <input
             type="text"
-            placeholder="Search tasks..."
+            placeholder="Search tasks or people..."
             value={filters.search}
             onChange={handleSearchChange}
-            className="w-full bg-slate-50 border border-slate-200 hover:border-slate-300 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 rounded-xl pl-9 pr-4 py-2 text-xs font-medium text-slate-700 transition-all"
+            className="w-full bg-slate-50 border border-slate-200 hover:border-slate-300 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 rounded-2xc pl-9 pr-4 py-2 text-sm font-medium text-slate-700 transition-all"
           />
         </div>
 
@@ -52,7 +52,7 @@ const Navbar = ({ title }) => {
         {currentProject && (
           <button
             onClick={() => setIsTaskModalOpen(true)}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-700 shadow-md shadow-indigo-100 transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-2xc text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-700 shadow-md shadow-indigo-100 transition-all cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Create Task</span>
