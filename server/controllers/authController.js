@@ -42,6 +42,19 @@ const registerUser = async (req, res) => {
       res.status(400).json({ success: false, message: 'Invalid user data' });
     }
   } catch (error) {
+    console.error('Register error:', error);
+
+    // Handle Mongoose validation errors
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map((val) => val.message);
+      return res.status(400).json({ success: false, message: messages.join(', ') });
+    }
+
+    // Handle duplicate key error (e.g., unique email)
+    if (error.code && error.code === 11000) {
+      return res.status(400).json({ success: false, message: 'User already exists' });
+    }
+
     res.status(500).json({ success: false, message: error.message });
   }
 };
